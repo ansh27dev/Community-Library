@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const mongoDB = require("dotenv");
+const dotenv = require("dotenv");
 dotenv.config();
 
-const mongoDB = () => {
+const connectDB = () => {
   mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
@@ -13,4 +13,4 @@ const mongoDB = () => {
     });
 };
 
-module.exports = mongoDB;
+module.exports = connectDB;
