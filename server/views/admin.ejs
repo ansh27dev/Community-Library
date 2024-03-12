@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="available">
+      <h1>books available</h1>
+      <ul>
+        <% foodDonations.forEach(food => { %>
+        <li>
+          <h2><%= food.restaurant %></h2>
+          <p><%= food.serveSize %></p>
+          <p><%= food.foodDescription %></p>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+
+    <div class="issued">
+      <h1>books issued</h1>
+      <ul>
+        <% foodDonations.forEach(food => { %>
+        <li>
+          <h2><%= food.restaurant %></h2>
+          <p><%= food.serveSize %></p>
+          <p><%= food.foodDescription %></p>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+  </body>
+</html>

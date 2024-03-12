@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, rgb(54, 54, 129), rgb(97, 75, 198));
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.login {
+  background-color: black;
+  height: 25rem;
+  width: 20rem;
+  border-radius: 50px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: xx-large;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+}
+
+.log {
+  height: 2rem;
+  width: 15rem;
+  margin: 0.5rem;
+}
+
+button {
+  height: 2.5rem;
+  width: 7rem;
+  border-radius: 9px;
+}
+
+button:hover {
+  background-color: rgb(137, 137, 135);
+}

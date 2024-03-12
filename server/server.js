@@ -11,7 +11,7 @@ const connectDB = require("./database");
 connectDB();
 
 app.set("view engine", "ejs");
-app.set("views", path.resolve("./views"));
+app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 var PORT = process.env.PORT || 8000;

@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(45deg, rgb(54, 54, 108), rgb(122, 133, 198));
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+nav {
+  background-color: rgb(4, 4, 9);
+  height: 4rem;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  color: aliceblue;
+  z-index: 9999;
+}
+
+.name {
+  font-size: 1.9rem;
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  font-family: "Sriracha", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.right {
+  font-size: 1.4rem;
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 1rem;
+}
+
+.intro {
+  background: url("../images/photo-1521587760476-6c12a4b040da.avif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90vh;
+  width: 100vw;
+  padding-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.el {
+  height: 25rem;
+  width: 65rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.8px);
+  -webkit-backdrop-filter: blur(3.8px);
+  border: 1px solid rgba(81, 72, 72, 0.87);
+  font-family: "Sriracha", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5rem;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+.text {
+  padding-left: 10px;
+  color: rgb(161, 235, 210);
+}
+.des {
+  font-size: 1.3rem;
+  color: rgb(255, 255, 255);
+}
+
+.middle {
+  background: linear-gradient(to bottom, rgb(121, 121, 231), #f8f9fb);
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20rem;
+}
+.join {
+  height: 25rem;
+  width: 30rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 150px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.8px);
+  -webkit-backdrop-filter: blur(3.8px);
+  border: 1px solid rgba(81, 72, 72, 0.87);
+  font-family: "Sriracha", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  color: rgb(60, 54, 74);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.login {
+  transition: transform 0.3s ease;
+  height: 25rem;
+  width: 30rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 150px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.8px);
+  -webkit-backdrop-filter: blur(3.8px);
+  border: 1px solid rgba(81, 72, 72, 0.87);
+  font-family: "Sriracha", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  color: rgb(60, 54, 74);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.join:hover {
+  transform: translate(-2%, -2%);
+}
+.login:hover {
+  transform: translate(-2%, -2%);
+}
+.about {
+  background-color: #271e1e;
+  height: 40vh;
+  width: 100vw;
+  color: rgb(255, 255, 255);
+  padding-left: 40px;
+}
+
+.about .head {
+  font-size: xx-large;
+}
+
+.about .body {
+  width: 40vw;
+  font-size: x-large;
+}
