@@ -3,13 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="../public/stylesheets/profile.css" />
   </head>
   <body>
-    <h1>HELLO</h1>
-    <br />
-    <% name %>
-    <div class="donate">click here to donate a book</div>
-    <div class="check">click here to check books available in your area</div>
+    <header>
+      <nav>
+        <div class="name">Community Library</div>
+        <div class="right">
+          <ul>
+            Home
+          </ul>
+          <ul>
+            Login
+          </ul>
+          <ul>
+            Register
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="donate">
+      <div class="glass">
+        Donate
+        <form
+          action="
+      /donate"
+          method="post"
+        >
+          <input type="text" placeholder="book name" /> <br />
+          <input type="text" placeholder="publisher" /> <br />
+          <input type="text" placeholder="author" /> <br />
+          <input type="text" placeholder="ISBN" /> <br />
+          <div class="btn"><button>submit</button></div>
+        </form>
+        <div class="disclaimer">
+          <br />kindly submit the books in your nearest community library
+        </div>
+      </div>
+      <div class="check">click here to check books available in your area</div>
+    </div>
   </body>
 </html>

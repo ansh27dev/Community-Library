@@ -3,17 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/stylesheets/listing.css" />
   </head>
   <body>
-    <h1>books available in your area</h1>
-    <ul>
-      <% foodDonations.forEach(food => { %>
-      <li>
-        <h2><%= food.restaurant %></h2>
-        <p><%= food.serveSize %></p>
-        <p><%= food.foodDescription %></p>
-      </li>
-      <% }); %>
-    </ul>
+    <h1>Books available in your area</h1>
+    <br /><br />
+    <div class="books">
+      <ul>
+        <% foodDonations.forEach(food => {
+        <hr />
+        <li>
+          <h2><%= food.restaurant %></h2>
+          <p><%= food.serveSize %></p>
+          <p><%= food.foodDescription %></p>
+        </li>
+        <hr />
+        }); %>
+      </ul>
+    </div>
   </body>
 </html>
