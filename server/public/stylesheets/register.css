@@ -13,7 +13,7 @@ body {
 }
 
 .register {
-  height: 30rem;
+  height: 35rem;
   width: 20rem;
   background-color: black;
   border-radius: 2rem;
@@ -34,9 +34,27 @@ button {
   height: 3rem;
   width: 7rem;
   border-radius: 25px;
-  margin-top: 19px;
+  margin-top: 10px;
 }
 
 button:hover {
   background-color: #dcc1c1;
+}
+
+#area {
+  font-size: medium;
+  border-radius: 20px;
+}
+
+#location {
+  font-size: medium;
+  border: 1px solid rgb(62, 60, 60);
+  border-radius: 20px;
+  background-color: rgb(61, 36, 115);
+  width: 18vw;
+  display: inline-block;
+  vertical-align: middle;
+}
+#location1 {
+  text-align: center;
 }
