@@ -3,19 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../public/stylesheets/register.css" />
+    <link rel="stylesheet" href="stylesheets/register.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="register">
       <br />
       Register <br />
       <br />
-      <input type="text" placeholder="Name" />
-      <input type="email" placeholder="Email" />
-      <input type="number" placeholder="Phone Number" />
-      <input type="text" placeholder="Username" />
-      <input type="text" placeholder="Password" /> <br />
-      <button>register</button>
+      <form action="/register" method="post">
+        <input type="text" placeholder="Name" name="Name" />
+        <input type="email" placeholder="Email" name="email" />
+        <input type="number" placeholder="Phone Number" name="phoneNumber" />
+        <input type="text" placeholder="Username" name="Username" />
+        <input type="text" placeholder="Password" name="password" /> <br />
+        <div id="area">area</div>
+
+        <!-- <input name="country" placeholder="country" id="country"></input>
+        <input name="state" placeholder="state" id="state"></input>
+        <input name="city" placeholder="city" id="city"></input> -->
+        <button>register</button>
+      </form>
+      <button id="location">karo</button>
     </div>
+    <script src="javascript/register.js"></script>
   </body>
 </html>

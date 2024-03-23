@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../public/stylesheets/profile.css" />
+    <link rel="stylesheet" href="stylesheets/profile.css" />
   </head>
   <body>
     <header>
@@ -31,17 +31,21 @@
       /donate"
           method="post"
         >
-          <input type="text" placeholder="book name" /> <br />
-          <input type="text" placeholder="publisher" /> <br />
-          <input type="text" placeholder="author" /> <br />
-          <input type="text" placeholder="ISBN" /> <br />
+          <input type="text" placeholder="book name" name="book name" /> <br />
+          <input type="text" placeholder="publisher" name="publisher" /> <br />
+          <input type="text" placeholder="author" name="author" /> <br />
+          <input type="text" placeholder="ISBN" name="ISBN" /> <br />
           <div class="btn"><button>submit</button></div>
         </form>
         <div class="disclaimer">
           <br />kindly submit the books in your nearest community library
         </div>
       </div>
-      <div class="check">click here to check books available in your area</div>
+      <div class="check">
+        <a href="/listing/<%= user.city %>"
+          >click here to check books available in your area</a
+        >
+      </div>
     </div>
   </body>
 </html>

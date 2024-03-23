@@ -1,20 +1,20 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const admin = new Schema({
   adminID: {
-    type: Text,
+    type: String,
     required: true,
   },
   country: {
-    type: Text,
+    type: String,
     required: true,
   },
   state: {
-    type: Text,
+    type: String,
     required: true,
   },
   city: {
-    type: Text,
+    type: String,
     required: true,
   },
   password: {

@@ -1,26 +1,30 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const books = new Schema({
   bookName: {
-    type: Text,
+    type: String,
     required: true,
   },
   publisher: {
-    type: Text,
+    type: String,
     required: true,
   },
-  Author: {
-    type: Text,
+  author: {
+    type: String,
     required: true,
   },
   ISBN: {
-    type: Text,
+    type: String,
     required: true,
   },
   availability: {
     type: Boolean,
     required: true,
     default: true,
+  },
+  donatedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
   },
 });
 
