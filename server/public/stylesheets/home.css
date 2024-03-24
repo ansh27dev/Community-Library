@@ -9,6 +9,10 @@ body {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 nav {
   background-color: rgb(4, 4, 9);
   height: 4rem;

@@ -6,18 +6,43 @@
     <link rel="stylesheet" href="stylesheets/login.css" />
   </head>
   <body>
-    <div class="login">
-      <form action="/login" method="post">
-        Login<br /><br />
-        <input class="log" placeholder="email" type="text" name="email" /><br />
-        <input
-          class="log"
-          placeholder="password"
-          type="text"
-          name="password"
-        /><br />
-        <button>submit</button>
-      </form>
+    <header>
+      <nav>
+        <div class="name">
+          <a href="/">Community Library</a>
+        </div>
+        <div class="right">
+          <ul>
+            <a href="/">Home</a>
+          </ul>
+          <ul>
+            <a href="/login">Login</a>
+          </ul>
+          <ul>
+            <a href="/register">Register</a>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="hero">
+      <div class="login">
+        <form action="/login" method="post">
+          Login<br /><br />
+          <input
+            class="log"
+            placeholder="email"
+            type="text"
+            name="email"
+          /><br />
+          <input
+            class="log"
+            placeholder="password"
+            type="text"
+            name="password"
+          /><br />
+          <button>submit</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

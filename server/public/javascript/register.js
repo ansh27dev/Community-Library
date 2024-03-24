@@ -1,8 +1,13 @@
 const button = document.getElementById("location");
-const address = document.getElementById("area");
+const country = document.getElementById("country");
+const state = document.getElementById("state");
+const city = document.getElementById("city");
 let latitude;
 let longitude;
 let data;
+let countryData;
+let stateData;
+let cityData;
 
 function gotLocation(position) {
   latitude = position.coords.latitude;
@@ -12,7 +17,7 @@ function gotLocation(position) {
     method: "GET",
   };
 
-  const apiKey = "";
+  const apiKey = "dbdaea34def84ae0b0142f8078d41105";
 
   fetch(
     `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&apiKey=${apiKey}`,
@@ -20,10 +25,7 @@ function gotLocation(position) {
   )
     .then((response) => response.json())
     .then((result) => {
-      data = result;
-      address.innerHTML = `<p>country:${data["features"][0]["properties"]["country"]}</p><br>
-      <p>state:${data["features"][0]["properties"]["state"]}</p><br>
-      <p>city:${data["features"][0]["properties"]["city"]}</p>`;
+      updateAddress(result);
     })
     .catch((error) => console.log("error", error));
 }
@@ -34,4 +36,18 @@ function failedToget() {
 
 button.addEventListener("click", () => {
   navigator.geolocation.getCurrentPosition(gotLocation, failedToget);
+});
+
+function updateAddress(data) {
+  countryData = data["features"][0]["properties"]["country"];
+  stateData = data["features"][0]["properties"]["state"];
+  cityData = data["features"][0]["properties"]["city"];
+
+  country.value = `${countryData}`;
+  state.value = `${stateData}`;
+  city.value = `${cityData}`;
+}
+
+document.getElementById("submit").addEventListener("click", function () {
+  document.getElementById("form").submit();
 });
