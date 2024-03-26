@@ -153,3 +153,16 @@ nav {
   width: 40vw;
   font-size: x-large;
 }
+
+.img {
+  background: url(../images/books-stack-of-three.png);
+  height: 100px;
+  width: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-around;
+}

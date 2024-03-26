@@ -1,5 +1,4 @@
 const { Schema, model, default: mongoose } = require("mongoose");
-const plm = require("passport-local-mongoose");
 
 const user = new Schema({
   name: {
@@ -9,15 +8,13 @@ const user = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   phoneNumber: {
     type: String,
     required: true,
   },
-  username: {
-    type: String,
-    required: true,
-  },
+
   password: {
     type: String,
     required: true,
@@ -35,8 +32,6 @@ const user = new Schema({
     required: true,
   },
 });
-
-user.plugin(plm);
 
 const userModel = model("userModel", user);
 module.exports = userModel;

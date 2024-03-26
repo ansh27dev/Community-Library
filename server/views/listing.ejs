@@ -10,15 +10,18 @@
     <br /><br />
     <div class="books">
       <ul>
-        <% foodDonations.forEach(food => {
-        <hr />
+        <% if (foundBook.length > 0) { %> <% foundBook.forEach(function(book) {
+        %>
         <li>
-          <h2><%= food.restaurant %></h2>
-          <p><%= food.serveSize %></p>
-          <p><%= food.foodDescription %></p>
+          <h2><%= book.bookName %></h2>
+          <br />
+          <h3>book.publisher</h3>
+          <br />
+          <h3>book.author</h3>
         </li>
-        <hr />
-        }); %>
+        <% }); %> <% } else { %>
+        <li>No books donated</li>
+        <% } %>
       </ul>
     </div>
   </body>

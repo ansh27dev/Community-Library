@@ -2,6 +2,7 @@ const button = document.getElementById("location");
 const country = document.getElementById("country");
 const state = document.getElementById("state");
 const city = document.getElementById("city");
+const registerButton = document.getElementById("submit");
 let latitude;
 let longitude;
 let data;
@@ -17,7 +18,7 @@ function gotLocation(position) {
     method: "GET",
   };
 
-  const apiKey = "dbdaea34def84ae0b0142f8078d41105";
+  const apiKey = "1274edac91784889948b0cc15b4ade15";
 
   fetch(
     `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&apiKey=${apiKey}`,
@@ -25,6 +26,7 @@ function gotLocation(position) {
   )
     .then((response) => response.json())
     .then((result) => {
+      console.log(result);
       updateAddress(result);
     })
     .catch((error) => console.log("error", error));
@@ -48,6 +50,7 @@ function updateAddress(data) {
   city.value = `${cityData}`;
 }
 
-document.getElementById("submit").addEventListener("click", function () {
+registerButton.addEventListener("click", () => {
+  // Submit the form only when the register button is clicked
   document.getElementById("form").submit();
 });

@@ -1,9 +1,7 @@
 const express = require("express");
 var cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 var session = require("express-session");
-var passport = require("passport");
-var localStrategy = require("passport-local");
-
 const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -24,21 +22,19 @@ app.use(
   session({
     secret: "adkkasdnfkj",
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true },
+    saveUninitialized: false,
   })
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
-passport.serializeUser(userModel.serializeUser());
-passport.deserializeUser(userModel.deserializeUser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var PORT = process.env.PORT || 8000;
 app.set("PORT", PORT);
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 app.use("/", indexRouter);
 

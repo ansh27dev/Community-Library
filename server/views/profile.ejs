@@ -3,49 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="stylesheets/profile.css" />
+    <link rel="stylesheet" href="../public/stylesheets/profile.css" />
   </head>
   <body>
     <header>
       <nav>
-        <div class="name">Community Library</div>
+        <div class="name">
+          <a href="/">Community Library</a>
+        </div>
         <div class="right">
           <ul>
-            Home
+            <a href="/">Home</a>
           </ul>
           <ul>
-            Login
+            <a href="/login">Login</a>
           </ul>
           <ul>
-            Register
+            <a href="/register">Register</a>
           </ul>
         </div>
       </nav>
     </header>
-
-    <div class="donate">
-      <div class="glass">
-        Donate
-        <form
-          action="
-      /donate"
-          method="post"
-        >
-          <input type="text" placeholder="book name" name="book name" /> <br />
-          <input type="text" placeholder="publisher" name="publisher" /> <br />
-          <input type="text" placeholder="author" name="author" /> <br />
-          <input type="text" placeholder="ISBN" name="ISBN" /> <br />
-          <div class="btn"><button>submit</button></div>
-        </form>
-        <div class="disclaimer">
-          <br />kindly submit the books in your nearest community library
+    <div class="hero">
+      <div class="donate">
+        <div class="glass">
+          Donate
+          <form
+            action="
+      /profile"
+            method="post"
+          >
+            <input type="text" placeholder="book name" name="bookName" />
+            <br />
+            <input type="text" placeholder="publisher" name="publisher" />
+            <br />
+            <input type="text" placeholder="author" name="author" /> <br />
+            <input type="text" placeholder="ISBN" name="ISBN" /> <br />
+            <div class="btn"><button>submit</button></div>
+          </form>
+          <div class="disclaimer">
+            <br />kindly submit the books in your nearest community library
+          </div>
+        </div>
+        <div class="check">
+          <a href="/listing/<%= user.city %>"
+            >click here to check books available in your area</a
+          >
         </div>
       </div>
-      <div class="check">
-        <a href="/listing/<%= user.city %>"
-          >click here to check books available in your area</a
-        >
+
+      <div class="yourDonation">
+        <h1><p>Hello, <%= user.name %></p></h1>
+        <h2><p>your donations:</p></h2>
+        <ul>
+          <% if (foundBook.length > 0) { %> <% foundBook.forEach(function(book)
+          { %>
+          <li><h4><%= book.bookName %></h4></li>
+          <% }); %> <% } else { %>
+          <li>No books donated</li>
+          <% } %>
+        </ul>
       </div>
+      <a href="/logout">
+        <button>Logout</button>
+      </a>
     </div>
   </body>
 </html>
