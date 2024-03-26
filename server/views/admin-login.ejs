@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylesheets/login.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="name">
+          <a href="/">Community Library</a>
+        </div>
+        <div class="right">
+          <ul>
+            <a href="/">Home</a>
+          </ul>
+          <ul>
+            <a href="/login">Login</a>
+          </ul>
+          <ul>
+            <a href="/register">Register</a>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="hero">
+      <div class="login">
+        <form action="/login" method="post">
+          Admin Login<br /><br />
+          <input
+            class="log"
+            placeholder="email"
+            type="email"
+            name="email"
+          /><br />
+          <input
+            class="log"
+            placeholder="password"
+            type="text"
+            name="password"
+          /><br />
+          <button>submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

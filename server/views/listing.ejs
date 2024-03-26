@@ -6,23 +6,57 @@
     <link rel="stylesheet" href="stylesheets/listing.css" />
   </head>
   <body>
-    <h1>Books available in your area</h1>
-    <br /><br />
-    <div class="books">
-      <ul>
-        <% if (foundBook.length > 0) { %> <% foundBook.forEach(function(book) {
-        %>
-        <li>
+    <header>
+      <nav>
+        <div class="name">
+          <a href="/">Community Library</a>
+        </div>
+        <div class="right">
+          <ul>
+            <a href="/">Home</a>
+          </ul>
+          <ul>
+            <a href="/login">Login</a>
+          </ul>
+          <ul>
+            <a href="/register">Register</a>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div style="text-align: center">
+      <u><h1>Admin dashboard</h1></u>
+
+      <h2>Available books</h2>
+
+      <% if (foundBook.length > 0) { %>
+      <div class="card-container">
+        <% foundBook.forEach(function(book) { %>
+        <div class="card">
           <h2><%= book.bookName %></h2>
-          <br />
-          <h3>book.publisher</h3>
-          <br />
-          <h3>book.author</h3>
-        </li>
-        <% }); %> <% } else { %>
-        <li>No books donated</li>
-        <% } %>
-      </ul>
+          <p><%= book.publisher %></p>
+          <p><%= book.author %></p>
+        </div>
+        <% }); %>
+      </div>
+      <% } else { %>
+      <div class="no-books">No books donated</div>
+      <% } %>
+
+      <h2>Unavailable books</h2>
+      <% if (foundBook.length > 0) { %>
+      <div class="card-container">
+        <% foundBook.forEach(function(book) { %>
+        <div class="card">
+          <h2><%= book.bookName %></h2>
+          <p><%= book.publisher %></p>
+          <p><%= book.author %></p>
+        </div>
+        <% }); %>
+      </div>
+      <% } else { %>
+      <div class="no-books">No books donated</div>
+      <% } %>
     </div>
   </body>
 </html>

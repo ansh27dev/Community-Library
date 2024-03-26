@@ -30,10 +30,6 @@ router.get("/listing/:city", async (req, res) => {
   res.render("listing", { foundBook });
 });
 
-router.get("/admin/:id", (req, res) => {
-  res.render("admin", { id });
-});
-
 router.get("/logout", function (req, res, next) {
   try {
     res.cookie("token", "", {
@@ -117,10 +113,6 @@ router.post("/register", async (req, res) => {
     console.log(err);
     return res.status(500).send("Internal Server Error");
   }
-});
-
-router.post("/admin/:id", (req, res) => {
-  res.render("admin", { id });
 });
 
 router.get("/profile", auth, async (req, res) => {

@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 var indexRouter = require("./routes/index");
+var adminRouter = require("./routes/admin");
 var userModel = require("./models/user");
 
 const connectDB = require("./database");
@@ -37,6 +38,7 @@ var PORT = process.env.PORT || 8000;
 app.set("PORT", PORT);
 
 app.use("/", indexRouter);
+app.use("/admin", adminRouter);
 
 const server = app.listen(PORT, () => {
   console.log(`connected to server at ${PORT}`);

@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const admin = new Schema({
-  adminID: {
+  email: {
     type: String,
     required: true,
   },

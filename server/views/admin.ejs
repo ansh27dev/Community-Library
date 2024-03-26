@@ -3,32 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="stylesheets/admin.css" />
   </head>
   <body>
-    <div class="available">
-      <h1>books available</h1>
-      <ul>
-        <% foodDonations.forEach(food => { %>
-        <li>
-          <h2><%= food.restaurant %></h2>
-          <p><%= food.serveSize %></p>
-          <p><%= food.foodDescription %></p>
-        </li>
-        <% }); %>
-      </ul>
-    </div>
+    <div style="text-align: center">
+      <u><h1>Admin dashboard</h1></u>
 
-    <div class="issued">
-      <h1>books issued</h1>
-      <ul>
-        <% foodDonations.forEach(food => { %>
-        <li>
-          <h2><%= food.restaurant %></h2>
-          <p><%= food.serveSize %></p>
-          <p><%= food.foodDescription %></p>
-        </li>
+      <h2>Available books</h2>
+
+      <% if (foundBook.length > 0) { %>
+      <div class="card-container">
+        <% foundBook.forEach(function(book) { %>
+        <div class="card">
+          <h2>Book name:<%= book.bookName %></h2>
+          <p>Publisher:<%= book.publisher %></p>
+          <p>Author:<%= book.author %></p>
+        </div>
         <% }); %>
-      </ul>
+      </div>
+      <% } else { %>
+      <div class="no-books">No books donated</div>
+      <% } %>
+
+      <h2>Unavailable books</h2>
+      <% if (foundBook.length > 0) { %>
+      <div class="card-container">
+        <% foundBook.forEach(function(book) { %>
+        <div class="card">
+          <h2><%= book.bookName %></h2>
+          <p><%= book.publisher %></p>
+          <p><%= book.author %></p>
+        </div>
+        <% }); %>
+      </div>
+      <% } else { %>
+      <div class="no-books">No books donated</div>
+      <% } %>
     </div>
   </body>
 </html>

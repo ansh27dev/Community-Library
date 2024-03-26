@@ -7,6 +7,19 @@ body {
   height: 100vh;
   background: linear-gradient(45deg, rgb(54, 54, 108), rgb(122, 133, 198));
   font-family: Georgia, "Times New Roman", Times, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  background: rgba(88, 187, 31, 0.27);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(19.8px);
+  -webkit-backdrop-filter: blur(19.8px);
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  height: 30rem;
+  width: 25rem;
 }
 
 nav {

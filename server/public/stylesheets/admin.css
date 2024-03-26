@@ -1,0 +1,10 @@
+.card-container {
+  background: rgba(156, 208, 35, 0.27);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(19.8px);
+  -webkit-backdrop-filter: blur(19.8px);
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  height: 30rem;
+  width: 25rem;
+}
