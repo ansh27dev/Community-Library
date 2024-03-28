@@ -8,7 +8,6 @@ dotenv.config();
 
 var indexRouter = require("./routes/indexRouter");
 var adminRouter = require("./routes/adminRouter");
-var userModel = require("./models/userModel");
 
 const connectDB = require("./database");
 connectDB();

@@ -24,39 +24,26 @@
         </div>
       </nav>
     </header>
-    <div style="text-align: center">
-      <u><h1>Listings in your city</h1></u>
+    <div id="hero">
+      <div class="elements">
+        <u><h1>Listings in your city</h1></u>
 
-      <h2>Available books</h2>
+        <h2>Available books</h2>
 
-      <% if (foundBook.length > 0) { %>
-      <div class="card-container">
-        <% foundBook.forEach(function(book) { %>
-        <div class="card">
-          <h2><%= book.bookName %></h2>
-          <p><%= book.publisher %></p>
-          <p><%= book.author %></p>
+        <% if (foundBook.length > 0) { %>
+        <div class="card-container">
+          <% foundBook.forEach(function(book) { %>
+          <div class="card">
+            <h2><%= book.bookName %></h2>
+            <p><%= book.publisher %></p>
+            <p><%= book.author %></p>
+          </div>
+          <% }); %>
         </div>
-        <% }); %>
+        <% } else { %>
+        <div class="no-books">No books donated</div>
+        <% } %>
       </div>
-      <% } else { %>
-      <div class="no-books">No books donated</div>
-      <% } %>
-
-      <h2>Unavailable books</h2>
-      <% if (foundBook.length > 0) { %>
-      <div class="card-container">
-        <% foundBook.forEach(function(book) { %>
-        <div class="card">
-          <h2><%= book.bookName %></h2>
-          <p><%= book.publisher %></p>
-          <p><%= book.author %></p>
-        </div>
-        <% }); %>
-      </div>
-      <% } else { %>
-      <div class="no-books">No books donated</div>
-      <% } %>
     </div>
   </body>
 </html>

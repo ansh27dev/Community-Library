@@ -3,34 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="stylesheets/register.css" />
+    <link rel="stylesheet" href="stylesheets/admin-register.css" />
   </head>
   <body>
-    <header>
-      <nav>
-        <div class="name">
-          <a href="/">Community Library</a>
-        </div>
-        <div class="right">
-          <ul>
-            <a href="/">Home</a>
-          </ul>
-          <ul>
-            <a href="/login">Login</a>
-          </ul>
-          <ul>
-            <a href="/register">Register</a>
-          </ul>
-        </div>
-      </nav>
-    </header>
+    <h1>Admin Registration</h1>
     <div class="hero">
       <div class="register">
         <br />
         Register <br />
         <br />
-        <form id="form" action="/register" method="post">
-          <input type="text" placeholder="Name" name="name" />
+        <form id="form" action="/admin/register" method="post">
           <input type="email" placeholder="Email" name="email" />
           <input type="number" placeholder="Phone Number" name="phoneNumber" />
           <input type="text" placeholder="Password" name="password" /> <br />
@@ -67,6 +49,6 @@
         <button type="button" id="submit">Register</button>
       </div>
     </div>
-    <script src="javascript/register.js"></script>
+    <script src="javascript/admin-register.js"></script>
   </body>
 </html>

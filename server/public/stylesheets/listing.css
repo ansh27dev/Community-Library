@@ -28,6 +28,16 @@ body {
   }
 }
 
+#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elements {
+  text-align: center;
+}
+
 .card {
   background: rgba(88, 187, 31, 0.27);
   border-radius: 16px;

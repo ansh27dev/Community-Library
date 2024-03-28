@@ -131,7 +131,9 @@ router.post("/issue", async (req, res) => {
     .catch((error) => {
       console.error("Error marking book availability as false:", error);
     });
+  res.render("admin", { availableBooks, unAvailableBooks });
 });
+
 router.post("/unissue", async (req, res) => {
   const { isbn } = req.body;
 
@@ -163,6 +165,7 @@ router.post("/unissue", async (req, res) => {
     .catch((error) => {
       console.error("Error marking book availability as false:", error);
     });
+  res.render("admin", { availableBooks, unAvailableBooks });
 });
 
 module.exports = router;

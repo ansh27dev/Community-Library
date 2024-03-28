@@ -33,40 +33,6 @@ body {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-a {
-  text-decoration: none;
-}
-
-nav {
-  background-color: rgb(4, 4, 9);
-  height: 4rem;
-  width: 100vw;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  color: aliceblue;
-  z-index: 9999;
-}
-
-.name {
-  font-size: 1.9rem;
-  display: flex;
-  align-items: center;
-  margin-left: 2rem;
-  font-family: "Sriracha", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-.right {
-  font-size: 1.4rem;
-  position: absolute;
-  top: 50%;
-  right: 2rem;
-  transform: translateY(-50%);
-  display: flex;
-  gap: 1rem;
-}
-
 .register {
   height: 40rem;
   width: 20rem;
