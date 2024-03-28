@@ -4,42 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="stylesheets/admin.css" />
+    <link rel="stylesheet" href="../public/stylesheets/admin.css" />
   </head>
   <body>
-    <div style="text-align: center">
-      <u><h1>Admin dashboard</h1></u>
+    <div class="hero">
+      <div style="text-align: center">
+        <u><h1>Admin dashboard</h1></u>
 
-      <h2>Available books</h2>
+        <h2>Available books</h2>
 
-      <% if (foundBook.length > 0) { %>
-      <div class="card-container">
-        <% foundBook.forEach(function(book) { %>
-        <div class="card">
-          <h2>Book name:<%= book.bookName %></h2>
-          <p>Publisher:<%= book.publisher %></p>
-          <p>Author:<%= book.author %></p>
+        <% if (availableBooks.length > 0) { %>
+        <div class="card-container">
+          <% availableBooks.forEach(function(book) { %>
+          <div class="card">
+            <h2>Book name:<%= book.bookName %></h2>
+            <p>Publisher:<%= book.publisher %></p>
+            <p>Author:<%= book.author %></p>
+            <p>ISBN:<span class="ISBN"><%= book.ISBN %></span></p>
+            <button id="issue">Issue</button>
+          </div>
+          <% }); %>
         </div>
-        <% }); %>
-      </div>
-      <% } else { %>
-      <div class="no-books">No books donated</div>
-      <% } %>
+        <% } else { %>
+        <div class="no-books">No books available</div>
+        <% } %>
 
-      <h2>Unavailable books</h2>
-      <% if (foundBook.length > 0) { %>
-      <div class="card-container">
-        <% foundBook.forEach(function(book) { %>
-        <div class="card">
-          <h2><%= book.bookName %></h2>
-          <p><%= book.publisher %></p>
-          <p><%= book.author %></p>
+        <h2>Unavailable books</h2>
+        <% if (unAvailableBooks.length > 0) { %>
+        <div class="card-container">
+          <% unAvailableBooks.forEach(function(book) { %>
+          <div class="card">
+            <h2>Book name:<%= book.bookName %></h2>
+            <p>Publisher:<%= book.publisher %></p>
+            <p>Author:<%= book.author %></p>
+            <p>ISBN:<span class="ISBN"><%= book.ISBN %></span></p>
+            <button id="unissue" data-isbn="<%= book.ISBN %>">Unissue</button>
+          </div>
+          <% }); %>
         </div>
-        <% }); %>
+        <% } else { %>
+        <div class="no-books">No books issued</div>
+        <% } %>
       </div>
-      <% } else { %>
-      <div class="no-books">No books donated</div>
-      <% } %>
+
+      <div class="myModal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Issuer Information</h2>
+          <form action="/admin/issue" id="modalForm">
+            <input
+              type="text"
+              name="issuerName"
+              placeholder="Enter your name"
+            /><br /><br />
+            <input
+              type="text"
+              name="issuerEmail"
+              placeholder="Enter your email"
+            /><br /><br />
+            <input type="hidden" id="ISBN-FIELD-ISSUE" name="isbnIssueField" />
+
+            <button id="issue-confirm">Issue</button>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>

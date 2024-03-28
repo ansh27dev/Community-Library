@@ -4,8 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth");
 
-const userModel = require("../models/user");
-const bookModel = require("../models/book");
+const userModel = require("../models/userModel");
+const bookModel = require("../models/bookModel");
 
 router.get("/", (req, res) => {
   res.render("home");

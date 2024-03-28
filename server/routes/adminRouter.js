@@ -5,9 +5,10 @@ const jwt = require("jsonwebtoken");
 
 const authAdmin = require("../middlewares/authAdmin");
 
-const adminModel = require("../models/admin");
-const userModel = require("../models/user");
-const bookModel = require("../models/book");
+const adminModel = require("../models/adminModel");
+const userModel = require("../models/userModel");
+const bookModel = require("../models/bookModel");
+const issueModel = require("../models/issueModel");
 
 router.post("/register", async (req, res) => {
   try {
@@ -92,13 +93,76 @@ router.get("/:city", authAdmin, async (req, res) => {
   const reqCity = req.params.city;
   const usersInCity = await userModel.find({ city: reqCity });
   const usersId = usersInCity.map((user) => user._id);
-  const foundBook = await bookModel.find({
+  const availableBooks = await bookModel.find({
     donatedBy: { $in: usersId },
     availability: true,
   });
-  res.render("admin", { foundBook });
+
+  const unAvailableBooks = await bookModel.find({
+    donatedBy: { $in: usersId },
+    availability: false,
+  });
+
+  res.render("admin", { availableBooks, unAvailableBooks });
 });
 
-router.post("/:city", async (req, res) => {});
+router.post("/issue", async (req, res) => {
+  const { issuerName, issuerEmail, isbnIssueField } = req.body;
+
+  const createdIssue = new issueModel({
+    issuerName,
+    issuerEmail,
+    isbnIssueField,
+  });
+  await createdIssue.save();
+
+  await bookModel
+    .findOneAndUpdate(
+      { ISBN: isbnIssueField },
+      { $set: { availability: false } }
+    )
+    .then((updatedBook) => {
+      if (updatedBook) {
+        console.log("Book availability marked as false:", updatedBook);
+      } else {
+        console.log("Book not found with ISBN:", isbnIssueField);
+      }
+    })
+    .catch((error) => {
+      console.error("Error marking book availability as false:", error);
+    });
+});
+router.post("/unissue", async (req, res) => {
+  const { isbn } = req.body;
+
+  await issueModel
+    .findOneAndUpdate({ isbn: isbn }, { $set: { bookReturned: true } })
+    .then((unissue) => {
+      if (unissue) {
+        console.log("Book unissued:", unissue);
+      } else {
+        console.log("Book not found with ISBN:", isbnIssueField);
+      }
+    })
+    .catch((error) => {
+      console.error("Error in unissuing:", error);
+    });
+
+  await bookModel
+    .findOneAndUpdate(
+      { ISBN: isbnIssueField },
+      { $set: { availability: true } }
+    )
+    .then((updatedBook) => {
+      if (updatedBook) {
+        console.log("Book availability marked as true:", updatedBook);
+      } else {
+        console.log("Book not found with ISBN:", isbnIssueField);
+      }
+    })
+    .catch((error) => {
+      console.error("Error marking book availability as false:", error);
+    });
+});
 
 module.exports = router;

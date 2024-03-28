@@ -6,9 +6,9 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
-var indexRouter = require("./routes/index");
-var adminRouter = require("./routes/admin");
-var userModel = require("./models/user");
+var indexRouter = require("./routes/indexRouter");
+var adminRouter = require("./routes/adminRouter");
+var userModel = require("./models/userModel");
 
 const connectDB = require("./database");
 connectDB();
