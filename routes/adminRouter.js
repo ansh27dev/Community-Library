@@ -42,6 +42,11 @@ router.post("/register", async (req, res) => {
         expiresIn: "1h",
       }
     );
+    const options = {
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+    res.status(200).cookie("token", token, options);
     return res.redirect(`/admin/${city}`);
   } catch (err) {
     console.log(err);
@@ -56,14 +61,16 @@ router.get("/register", (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    console.log("Received thing:", req.body);
     if (!(email && password)) {
-      res.status(400).send("incomplete form");
+      return res.status(400).send("incomplete form");
     }
 
+    console.log("Received email:", email);
     const admin = await adminModel.findOne({ email });
-    if (!user) {
-      res.send("admin doesnt exist");
+    console.log("Retrieved admin:", admin);
+    if (!admin) {
+      return res.status(404).send("admin doesnt exist");
     }
 
     let token;
@@ -71,17 +78,20 @@ router.post("/login", async (req, res) => {
       token = jwt.sign({ id: admin._id, email }, process.env.SECRET, {
         expiresIn: "1h",
       });
-    }
 
-    //cookie
-    const options = {
-      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-      httpOnly: true,
-    };
-    res.status(200).cookie("token", token, options);
-    res.redirect(`/admin/${city}`);
+      //cookie
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      };
+      res.cookie("token", token, options);
+      return res.redirect(`/admin/${city}`);
+    } else {
+      return res.status(401).send("invalid password");
+    }
   } catch (err) {
     console.log(err);
+    return res.status(500).send("internal server error");
   }
 });
 

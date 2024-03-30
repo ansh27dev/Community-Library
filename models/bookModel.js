@@ -24,7 +24,7 @@ const books = new Schema({
   },
   donatedBy: {
     type: Schema.Types.ObjectId,
-    ref: "user",
+    ref: "userModel",
   },
 });
 

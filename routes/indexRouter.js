@@ -57,20 +57,17 @@ router.post("/login", async (req, res) => {
       res.send("user doesnt exist");
     }
 
-    let token;
     if (await bcrypt.compare(password, user.password)) {
-      token = jwt.sign({ id: user._id, email }, process.env.SECRET, {
+      const token = jwt.sign({ id: user._id, email }, process.env.SECRET, {
         expiresIn: "1h",
       });
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      };
+      res.status(200).cookie("token", token, options);
+      res.redirect("/profile");
     }
-
-    //cookie
-    const options = {
-      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-      httpOnly: true,
-    };
-    res.status(200).cookie("token", token, options);
-    res.redirect("/profile");
   } catch (err) {
     console.log(err);
   }
@@ -108,7 +105,14 @@ router.post("/register", async (req, res) => {
     const token = jwt.sign({ id: createdUser._id, email }, process.env.SECRET, {
       expiresIn: "1h",
     });
-    return res.status(201).json({ token, redirect: "/profile" });
+
+    const options = {
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+    res.status(200).cookie("token", token, options);
+
+    return res.redirect("/profile");
   } catch (err) {
     console.log(err);
     return res.status(500).send("Internal Server Error");
