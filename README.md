@@ -35,24 +35,28 @@ A platform/portal that provides allows donating and pooling used books in local 
 
 ## Installation
 
-Use the npm package manager to install necessary dependencies.
+- Use the npm package manager to install necessary dependencies.
 
 ```bash
 git clone https://github.com/ansh27dev/Community-Library.git
+cd Community-Library
 npm install
-npm start
-
 ```
 
-## Environment Variables
+#### Environment Variables
 
 You can customize the environment variables in the following way.
-
+- make a .env file and paste following:
 ```bash
 PORT=3000
 MONGODB_URI=mongodb://localhost:27017/MyCommunityLibrary
 JWT_SECRET= mysecretkey
+```
 
+#### Start the server
+
+```bash
+npm start
 ```
 
 ## Middleware
