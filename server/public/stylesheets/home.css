@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   height: 100vh;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -25,10 +29,6 @@ body {
   }
 }
 
-a {
-  text-decoration: none;
-}
-
 nav {
   background-color: rgb(4, 4, 9);
   height: 4rem;
@@ -36,8 +36,12 @@ nav {
   position: fixed;
   display: flex;
   align-items: center;
-  color: aliceblue;
+  color: rgb(255, 255, 255);
   z-index: 9999;
+}
+nav a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .name {
@@ -48,6 +52,8 @@ nav {
   font-family: "Sriracha", cursive;
   font-weight: 400;
   font-style: normal;
+  color: azure;
+  text-decoration: none;
 }
 .right {
   font-size: 1.4rem;
@@ -57,6 +63,16 @@ nav {
   transform: translateY(-50%);
   display: flex;
   gap: 1rem;
+  text-decoration: none;
+}
+
+.right ul {
+  list-style-type: none;
+}
+
+.right li {
+  display: inline;
+  margin-right: 40px;
 }
 
 .intro {
@@ -109,20 +125,23 @@ nav {
   width: 30rem;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 150px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.8px);
-  -webkit-backdrop-filter: blur(3.8px);
+
   border: 1px solid rgba(81, 72, 72, 0.87);
-  font-family: "Sriracha", cursive;
-  font-weight: 400;
+  font-family: "Cormorant Upright", serif;
+  font-weight: 900;
   font-style: normal;
-  font-size: 2rem;
+
+  font-size: 3rem;
   color: rgb(60, 54, 74);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
   text-align: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .login {
@@ -131,14 +150,16 @@ nav {
   width: 30rem;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 150px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.8px);
-  -webkit-backdrop-filter: blur(3.8px);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border: 1px solid rgba(81, 72, 72, 0.87);
-  font-family: "Sriracha", cursive;
-  font-weight: 400;
+  font-family: "Cormorant Upright", serif;
+  font-weight: 900;
   font-style: normal;
-  font-size: 2rem;
+
+  font-size: 3rem;
   color: rgb(60, 54, 74);
   display: flex;
   align-items: center;
@@ -180,4 +201,27 @@ nav {
 .bottom {
   display: flex;
   justify-content: space-around;
+}
+
+.curved {
+  position: relative;
+  background: #2c3e50;
+  height: 20vh;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+  text-align: center;
+  color: aliceblue;
+}
+
+.span {
+  content: "\201F";
+  font-weight: bolder;
+  font-size: 5rem;
+}
+
+.quote {
+  font-size: x-large;
+  font-family: "Cormorant Upright", serif;
+  font-weight: 700;
+  font-style: normal;
 }

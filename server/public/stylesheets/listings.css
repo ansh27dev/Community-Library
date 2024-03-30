@@ -9,9 +9,6 @@ body {
   animation: gradient 15s ease infinite;
   height: 100vh;
   font-family: Georgia, "Times New Roman", Times, serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 @keyframes gradient {
@@ -39,14 +36,17 @@ body {
 }
 
 .card {
-  background: rgba(88, 187, 31, 0.27);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(19.8px);
   -webkit-backdrop-filter: blur(19.8px);
   border: 1px solid rgba(0, 238, 255, 0.3);
-  height: 30rem;
+  height: 10rem;
   width: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
 }
 
 nav {
@@ -56,8 +56,12 @@ nav {
   position: fixed;
   display: flex;
   align-items: center;
-  color: aliceblue;
+  color: rgb(255, 255, 255);
   z-index: 9999;
+}
+nav a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .name {
@@ -68,6 +72,8 @@ nav {
   font-family: "Sriracha", cursive;
   font-weight: 400;
   font-style: normal;
+  color: azure;
+  text-decoration: none;
 }
 .right {
   font-size: 1.4rem;
@@ -77,4 +83,14 @@ nav {
   transform: translateY(-50%);
   display: flex;
   gap: 1rem;
+  text-decoration: none;
+}
+
+.right ul {
+  list-style-type: none;
+}
+
+.right li {
+  display: inline;
+  margin-right: 40px;
 }

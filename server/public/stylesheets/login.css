@@ -23,10 +23,6 @@ body {
   }
 }
 
-a {
-  text-decoration: none;
-}
-
 nav {
   background-color: rgb(4, 4, 9);
   height: 4rem;
@@ -34,8 +30,12 @@ nav {
   position: fixed;
   display: flex;
   align-items: center;
-  color: aliceblue;
+  color: rgb(255, 255, 255);
   z-index: 9999;
+}
+nav a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .name {
@@ -46,6 +46,8 @@ nav {
   font-family: "Sriracha", cursive;
   font-weight: 400;
   font-style: normal;
+  color: azure;
+  text-decoration: none;
 }
 .right {
   font-size: 1.4rem;
@@ -55,6 +57,16 @@ nav {
   transform: translateY(-50%);
   display: flex;
   gap: 1rem;
+  text-decoration: none;
+}
+
+.right ul {
+  list-style-type: none;
+}
+
+.right li {
+  display: inline;
+  margin-right: 40px;
 }
 
 .hero {
@@ -62,7 +74,6 @@ nav {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to bottom, rgb(54, 54, 129), rgb(97, 75, 198));
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 

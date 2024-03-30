@@ -31,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            console.log("book unissued");
+            console.log("book returned");
           } else {
-            console.error("failed to unissue book");
+            console.error("failed to return book");
           }
         })
         .catch((error) => {

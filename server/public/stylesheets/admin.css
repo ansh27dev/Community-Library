@@ -25,16 +25,18 @@ body {
   }
 }
 
-.card-container {
-  background: rgba(156, 208, 35, 0.27);
+.card {
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(19.8px);
   -webkit-backdrop-filter: blur(19.8px);
   border: 1px solid rgba(0, 238, 255, 0.3);
-  height: 30rem;
+  height: 10rem;
   width: 25rem;
-  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
 }
 
 .myModal {

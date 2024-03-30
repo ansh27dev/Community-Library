@@ -42,7 +42,7 @@ router.post("/register", async (req, res) => {
         expiresIn: "1h",
       }
     );
-    return res.status(201).json({ token, redirect: `/admin/${city}` });
+    return res.redirect(`/admin/${city}`);
   } catch (err) {
     console.log(err);
     return res.status(500).send("Internal Server Error");

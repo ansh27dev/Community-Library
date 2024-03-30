@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="stylesheets/admin.css" />
+    <link rel="stylesheet" href="/stylesheets/admin.css" />
   </head>
   <body>
     <div class="hero">
@@ -38,7 +38,7 @@
             <p>Publisher:<%= book.publisher %></p>
             <p>Author:<%= book.author %></p>
             <p>ISBN:<span class="ISBN"><%= book.ISBN %></span></p>
-            <button id="unissue" data-isbn="<%= book.ISBN %>">Unissue</button>
+            <button id="unissue" data-isbn="<%= book.ISBN %>">unissue</button>
           </div>
           <% }); %>
         </div>
@@ -69,6 +69,6 @@
         </div>
       </div>
     </div>
-    <script src="javascript/admin.js"></script>
+    <script src="/javascript/register.js"></script>
   </body>
 </html>
