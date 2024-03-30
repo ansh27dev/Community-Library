@@ -39,7 +39,6 @@ Use the npm package manager to install necessary dependencies.
 
 ```bash
 git clone https://github.com/ansh27dev/Community-Library.git
-cd server
 npm install
 npm start
 
