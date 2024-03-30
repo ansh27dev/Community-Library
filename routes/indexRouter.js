@@ -8,15 +8,15 @@ const userModel = require("../models/userModel");
 const bookModel = require("../models/bookModel");
 
 router.get("/", (req, res) => {
-  res.render("home");
+  return res.render("home");
 });
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  return res.render("login");
 });
 
 router.get("/register", (req, res) => {
-  res.render("register");
+  return res.render("register");
 });
 
 router.get("/listing/:city", async (req, res) => {
@@ -27,7 +27,7 @@ router.get("/listing/:city", async (req, res) => {
     donatedBy: { $in: usersId },
     availability: true,
   });
-  res.render("listing", { foundBook });
+  return res.render("listing", { foundBook });
 });
 
 router.get("/logout", function (req, res, next) {
@@ -37,39 +37,48 @@ router.get("/logout", function (req, res, next) {
       httpOnly: true,
     });
 
-    res.redirect("/");
+    return res.redirect("/");
   } catch (err) {
     console.log(err);
-    res.status(500).send("Internal Server Error");
+    return res.status(500).send("Internal Server Error");
   }
 });
-
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
     if (!(email && password)) {
-      res.status(400).send("incomplete form");
+      return res.status(400).send("Incomplete form");
     }
 
     const user = await userModel.findOne({ email });
+
     if (!user) {
-      res.send("user doesnt exist");
+      console.log("User doesn't exist");
+      return res.status(404).send("User doesn't exist");
     }
 
-    if (await bcrypt.compare(password, user.password)) {
-      const token = jwt.sign({ id: user._id, email }, process.env.SECRET, {
-        expiresIn: "1h",
-      });
-      const options = {
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-        httpOnly: true,
-      };
-      res.status(200).cookie("token", token, options);
-      res.redirect("/profile");
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      console.log("Incorrect password");
+      return res.status(401).send("Incorrect password");
     }
+
+    const token = jwt.sign({ id: user._id, email }, process.env.SECRET, {
+      expiresIn: "1h",
+    });
+
+    const options = {
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+    res.cookie("token", token, options);
+
+    return res.redirect("/profile");
   } catch (err) {
-    console.log(err);
+    console.error("Error occurred during login:", err);
+    return res.status(500).send("Internal Server Error");
   }
 });
 
@@ -122,7 +131,7 @@ router.post("/register", async (req, res) => {
 router.get("/profile", auth, async (req, res) => {
   const foundBook = await bookModel.find({ donatedBy: req.userData._id });
 
-  res.render("profile", { user: req.userData, foundBook });
+  return res.render("profile", { user: req.userData, foundBook });
 });
 
 router.post("/profile", auth, async (req, res) => {
@@ -134,7 +143,7 @@ router.post("/profile", auth, async (req, res) => {
     donatedBy: req.userData._id,
   });
   const foundBook = await bookModel.find({ donatedBy: req.userData._id });
-  res.render("profile", { user: req.userData, foundBook });
+  return res.render("profile", { user: req.userData, foundBook });
 });
 
 module.exports = router;

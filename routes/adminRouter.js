@@ -61,37 +61,48 @@ router.get("/register", (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log("Received thing:", req.body);
     if (!(email && password)) {
       return res.status(400).send("incomplete form");
     }
-
-    console.log("Received email:", email);
     const admin = await adminModel.findOne({ email });
-    console.log("Retrieved admin:", admin);
+    const city = admin.city;
     if (!admin) {
       return res.status(404).send("admin doesnt exist");
     }
+    const passwordMatch = await bcrypt.compare(password, admin.password);
 
-    let token;
-    if (await bcrypt.compare(password, admin.password)) {
-      token = jwt.sign({ id: admin._id, email }, process.env.SECRET, {
-        expiresIn: "1h",
-      });
-
-      //cookie
-      const options = {
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-        httpOnly: true,
-      };
-      res.cookie("token", token, options);
-      return res.redirect(`/admin/${city}`);
-    } else {
-      return res.status(401).send("invalid password");
+    if (!passwordMatch) {
+      console.log("Incorrect password");
+      return res.status(401).send("Incorrect password");
     }
+
+    const token = jwt.sign({ id: admin._id, email }, process.env.SECRET, {
+      expiresIn: "1h",
+    });
+
+    const options = {
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+    res.cookie("token", token, options);
+    return res.redirect(`/admin/${city}`);
   } catch (err) {
     console.log(err);
     return res.status(500).send("internal server error");
+  }
+});
+
+router.get("/logout", function (req, res, next) {
+  try {
+    res.cookie("token", "", {
+      expires: new Date(0),
+      httpOnly: true,
+    });
+
+    return res.redirect("/admin/login");
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send("Internal Server Error");
   }
 });
 
@@ -101,6 +112,9 @@ router.get("/login", (req, res) => {
 
 router.get("/:city", authAdmin, async (req, res) => {
   const reqCity = req.params.city;
+  const cityData = {
+    city: reqCity,
+  };
   const usersInCity = await userModel.find({ city: reqCity });
   const usersId = usersInCity.map((user) => user._id);
   const availableBooks = await bookModel.find({
@@ -113,16 +127,16 @@ router.get("/:city", authAdmin, async (req, res) => {
     availability: false,
   });
 
-  res.render("admin", { availableBooks, unAvailableBooks });
+  res.render("admin", { availableBooks, unAvailableBooks, cityData });
 });
 
 router.post("/issue", async (req, res) => {
-  const { issuerName, issuerEmail, isbnIssueField } = req.body;
+  const { issuerName, issuerEmail, isbnIssueField, city } = req.body;
 
   const createdIssue = new issueModel({
-    issuerName,
-    issuerEmail,
-    isbnIssueField,
+    name: issuerName,
+    email: issuerEmail,
+    isbn: isbnIssueField,
   });
   await createdIssue.save();
 
@@ -141,11 +155,11 @@ router.post("/issue", async (req, res) => {
     .catch((error) => {
       console.error("Error marking book availability as false:", error);
     });
-  res.render("admin", { availableBooks, unAvailableBooks });
+  return res.redirect(`/admin/${city}`);
 });
 
 router.post("/unissue", async (req, res) => {
-  const { isbn } = req.body;
+  const { isbn, city } = req.body;
 
   await issueModel
     .findOneAndUpdate({ isbn: isbn }, { $set: { bookReturned: true } })
@@ -161,10 +175,7 @@ router.post("/unissue", async (req, res) => {
     });
 
   await bookModel
-    .findOneAndUpdate(
-      { ISBN: isbnIssueField },
-      { $set: { availability: true } }
-    )
+    .findOneAndUpdate({ ISBN: isbn }, { $set: { availability: true } })
     .then((updatedBook) => {
       if (updatedBook) {
         console.log("Book availability marked as true:", updatedBook);
@@ -175,7 +186,7 @@ router.post("/unissue", async (req, res) => {
     .catch((error) => {
       console.error("Error marking book availability as false:", error);
     });
-  res.render("admin", { availableBooks, unAvailableBooks });
+  return res.redirect(`/admin/${city}`);
 });
 
 module.exports = router;

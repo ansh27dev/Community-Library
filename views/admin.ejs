@@ -7,68 +7,78 @@
     <link rel="stylesheet" href="/stylesheets/admin.css" />
   </head>
   <body>
-    <div class="hero">
-      <div style="text-align: center">
-        <u><h1>Admin dashboard</h1></u>
+    <div class="title">
+      <h1>Admin dashboard</h1>
+    </div>
+    <div class="logout">
+      <a href="/admin/logout">
+        <button>Logout</button>
+      </a>
+    </div>
 
+    <div class="main">
+      <div class="outer-card-left">
         <h2>Available books</h2>
-
-        <% if (availableBooks.length > 0) { %>
-        <div class="card-container">
-          <% availableBooks.forEach(function(book) { %>
-          <div class="card">
-            <h2>Book name:<%= book.bookName %></h2>
-            <p>Publisher:<%= book.publisher %></p>
-            <p>Author:<%= book.author %></p>
-            <p>ISBN:<span class="ISBN"><%= book.ISBN %></span></p>
-            <button id="issue">Issue</button>
-          </div>
-          <% }); %>
+        <% if (availableBooks.length > 0) { %> <%
+        availableBooks.forEach(function(book) { %>
+        <div class="card">
+          <h2>Book name:<%= book.bookName %></h2>
+          <p>Publisher:<%= book.publisher %></p>
+          <p>Author:<%= book.author %></p>
+          <p>ISBN:<span class="ISBN"><%= book.ISBN %></span></p>
+          <div class="city"><%= cityData.city %></div>
+          <button class="issue">Issue</button>
         </div>
-        <% } else { %>
+        <% }); %> <% } else { %>
         <div class="no-books">No books available</div>
         <% } %>
+      </div>
 
+      <div class="outer-card-right">
         <h2>Unavailable books</h2>
-        <% if (unAvailableBooks.length > 0) { %>
-        <div class="card-container">
-          <% unAvailableBooks.forEach(function(book) { %>
-          <div class="card">
-            <h2>Book name:<%= book.bookName %></h2>
-            <p>Publisher:<%= book.publisher %></p>
-            <p>Author:<%= book.author %></p>
-            <p>ISBN:<span class="ISBN"><%= book.ISBN %></span></p>
-            <button id="unissue" data-isbn="<%= book.ISBN %>">unissue</button>
-          </div>
-          <% }); %>
+        <% if (unAvailableBooks.length > 0) { %> <%
+        unAvailableBooks.forEach(function(book) { %>
+        <div class="card">
+          <h2>Book name:<%= book.bookName %></h2>
+          <p>Publisher:<%= book.publisher %></p>
+          <p>Author:<%= book.author %></p>
+          <p>ISBN:<span class="ISBN"><%= book.ISBN %></span></p>
+          <button
+            class="unissue"
+            data-isbn="<%= book.ISBN %>"
+            data-city="<%= cityData.city %>"
+          >
+            unissue
+          </button>
         </div>
-        <% } else { %>
+        <% }); %> <% } else { %>
         <div class="no-books">No books issued</div>
         <% } %>
       </div>
+    </div>
 
-      <div class="myModal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Issuer Information</h2>
-          <form action="/admin/issue" id="modalForm">
-            <input
-              type="text"
-              name="issuerName"
-              placeholder="Enter your name"
-            /><br /><br />
-            <input
-              type="text"
-              name="issuerEmail"
-              placeholder="Enter your email"
-            /><br /><br />
-            <input type="hidden" id="ISBN-FIELD-ISSUE" name="isbnIssueField" />
-
-            <button id="issue-confirm">Issue</button>
-          </form>
-        </div>
+    <div class="myModal">
+      <div class="modal-content">
+        <div class="close-btn"><span class="close">&times;</span></div>
+        <h2>Issuer Information</h2>
+        <form action="/admin/issue" id="modalForm" method="post">
+          <input
+            type="text"
+            name="issuerName"
+            placeholder="Enter issuer's name"
+          /><br /><br />
+          <input
+            type="text"
+            name="issuerEmail"
+            placeholder="Enter issuer's email"
+          /><br /><br />
+          <input type="hidden" id="ISBN-FIELD-ISSUE" name="isbnIssueField" />
+          <input type="hidden" id="CITY-FIELD-VALUE" name="city" />
+          <button id="issue-confirm">Issue</button>
+        </form>
       </div>
     </div>
-    <script src="/javascript/register.js"></script>
+
+    <script src="/javascript/admin.js"></script>
   </body>
 </html>

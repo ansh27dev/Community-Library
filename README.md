@@ -33,6 +33,11 @@ A platform/portal that provides allows donating and pooling used books in local 
 
 ### Reverse Geocoding API by Geoapify to get location using latitude and longitude
 
+```bash
+ generate API key using Geoapify
+ assign it to "apiKey" variable in register.js (public->javascript->register.js)
+```
+
 ## Installation
 
 - Use the npm package manager to install necessary dependencies.
@@ -46,11 +51,13 @@ npm install
 #### Environment Variables
 
 You can customize the environment variables in the following way.
+
 - make a .env file and paste following:
+
 ```bash
 PORT=3000
 MONGODB_URI=mongodb://localhost:27017/MyCommunityLibrary
-JWT_SECRET= mysecretkey
+SECRET= mysecretkey
 ```
 
 #### Start the server

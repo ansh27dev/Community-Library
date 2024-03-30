@@ -11,7 +11,6 @@ const authAdmin = async (req, res, next) => {
   try {
     const decode = jwt.verify(token, process.env.SECRET);
     req.user = decode;
-
     req.userData = await adminModel.findById(decode.id);
   } catch (err) {
     res.status(401).send("invalid token");
