@@ -111,82 +111,76 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/:city", authAdmin, async (req, res) => {
-  const reqCity = req.params.city;
-  const cityData = {
-    city: reqCity,
-  };
-  const usersInCity = await userModel.find({ city: reqCity });
-  const usersId = usersInCity.map((user) => user._id);
-  const availableBooks = await bookModel.find({
-    donatedBy: { $in: usersId },
-    availability: true,
-  });
+  try {
+    const reqCity = req.params.city;
+    const cityData = {
+      city: reqCity,
+    };
+    const usersInCity = await userModel.find({ city: reqCity });
+    const usersId = usersInCity.map((user) => user._id);
+    const availableBooks = await bookModel.find({
+      donatedBy: { $in: usersId },
+      availability: true,
+    });
 
-  const unAvailableBooks = await bookModel.find({
-    donatedBy: { $in: usersId },
-    availability: false,
-  });
+    const unAvailableBooks = await bookModel.find({
+      donatedBy: { $in: usersId },
+      availability: false,
+    });
 
-  res.render("admin", { availableBooks, unAvailableBooks, cityData });
+    res.render("admin", { availableBooks, unAvailableBooks, cityData });
+  } catch (error) {
+    console.log("error retrieving admin city data:", error);
+    return res.status(500).send("internal server error");
+  }
 });
 
 router.post("/issue", async (req, res) => {
-  const { issuerName, issuerEmail, isbnIssueField, city } = req.body;
+  try {
+    const { issuerName, issuerEmail, isbnIssueField, city } = req.body;
 
-  const createdIssue = new issueModel({
-    name: issuerName,
-    email: issuerEmail,
-    isbn: isbnIssueField,
-  });
-  await createdIssue.save();
+    const createdIssue = new issueModel({
+      name: issuerName,
+      email: issuerEmail,
+      isbn: isbnIssueField,
+    });
+    await createdIssue.save();
 
-  await bookModel
-    .findOneAndUpdate(
+    const updatedBook = await bookModel.findOneAndUpdate(
       { ISBN: isbnIssueField },
       { $set: { availability: false } }
-    )
-    .then((updatedBook) => {
-      if (updatedBook) {
-        console.log("Book availability marked as false:", updatedBook);
-      } else {
-        console.log("Book not found with ISBN:", isbnIssueField);
-      }
-    })
-    .catch((error) => {
-      console.error("Error marking book availability as false:", error);
-    });
-  return res.redirect(`/admin/${city}`);
+    );
+    if (!updatedBook) {
+      console.log("Book not found with ISBN:", isbnIssueField);
+    }
+    return res.redirect(`/admin/${city}`);
+  } catch (error) {
+    console.error("Error issuing book :", error);
+    return res.status(500).send("internal server error");
+  }
 });
 
 router.post("/unissue", async (req, res) => {
-  const { isbn, city } = req.body;
+  try {
+    const { isbn, city } = req.body;
 
-  await issueModel
-    .findOneAndUpdate({ isbn: isbn }, { $set: { bookReturned: true } })
-    .then((unissue) => {
-      if (unissue) {
-        console.log("Book unissued:", unissue);
-      } else {
-        console.log("Book not found with ISBN:", isbnIssueField);
-      }
-    })
-    .catch((error) => {
-      console.error("Error in unissuing:", error);
-    });
+    await issueModel.findOneAndUpdate(
+      { isbn: isbn },
+      { $set: { bookReturned: true } }
+    );
 
-  await bookModel
-    .findOneAndUpdate({ ISBN: isbn }, { $set: { availability: true } })
-    .then((updatedBook) => {
-      if (updatedBook) {
-        console.log("Book availability marked as true:", updatedBook);
-      } else {
-        console.log("Book not found with ISBN:", isbnIssueField);
-      }
-    })
-    .catch((error) => {
-      console.error("Error marking book availability as false:", error);
-    });
-  return res.redirect(`/admin/${city}`);
+    const unissue = await bookModel.findOneAndUpdate(
+      { ISBN: isbn },
+      { $set: { availability: true } }
+    );
+    if (!updatedBook) {
+      console.log("Book not found with ISBN:", isbnIssueField);
+    }
+    return res.redirect(`/admin/${city}`);
+  } catch (error) {
+    console.error("Error unissuing book:", error);
+    return res.status(500).send("internal server error");
+  }
 });
 
 module.exports = router;

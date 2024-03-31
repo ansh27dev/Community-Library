@@ -20,14 +20,19 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/listing/:city", async (req, res) => {
-  const reqCity = req.params.city;
-  const usersInCity = await userModel.find({ city: reqCity });
-  const usersId = usersInCity.map((user) => user._id);
-  const foundBook = await bookModel.find({
-    donatedBy: { $in: usersId },
-    availability: true,
-  });
-  return res.render("listing", { foundBook });
+  try {
+    const reqCity = req.params.city;
+    const usersInCity = await userModel.find({ city: reqCity });
+    const usersId = usersInCity.map((user) => user._id);
+    const foundBook = await bookModel.find({
+      donatedBy: { $in: usersId },
+      availability: true,
+    });
+    return res.render("listing", { foundBook });
+  } catch (error) {
+    console.log("error rendering listing page:", error);
+    return res.status(500).send("internal server error");
+  }
 });
 
 router.get("/logout", function (req, res, next) {
@@ -43,6 +48,7 @@ router.get("/logout", function (req, res, next) {
     return res.status(500).send("Internal Server Error");
   }
 });
+
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -129,21 +135,30 @@ router.post("/register", async (req, res) => {
 });
 
 router.get("/profile", auth, async (req, res) => {
-  const foundBook = await bookModel.find({ donatedBy: req.userData._id });
-
-  return res.render("profile", { user: req.userData, foundBook });
+  try {
+    const foundBook = await bookModel.find({ donatedBy: req.userData._id });
+    return res.render("profile", { user: req.userData, foundBook });
+  } catch (error) {
+    console.log("error loading profile", error);
+    return res.status(500).send("Internal Server Error");
+  }
 });
 
 router.post("/profile", auth, async (req, res) => {
-  const donatedBook = await bookModel.create({
-    bookName: req.body.bookName,
-    publisher: req.body.publisher,
-    author: req.body.author,
-    ISBN: req.body.ISBN,
-    donatedBy: req.userData._id,
-  });
-  const foundBook = await bookModel.find({ donatedBy: req.userData._id });
-  return res.render("profile", { user: req.userData, foundBook });
+  try {
+    const donatedBook = await bookModel.create({
+      bookName: req.body.bookName,
+      publisher: req.body.publisher,
+      author: req.body.author,
+      ISBN: req.body.ISBN,
+      donatedBy: req.userData._id,
+    });
+    const foundBook = await bookModel.find({ donatedBy: req.userData._id });
+    return res.render("profile", { user: req.userData, foundBook });
+  } catch (error) {
+    console.log("error donating a book", error);
+    return res.status(500).send("Internal Server Error");
+  }
 });
 
 module.exports = router;
