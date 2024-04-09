@@ -88,8 +88,16 @@ nav a {
   color: aliceblue;
   text-align: center;
   font-size: xx-large;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   margin-top: 60px;
+}
+
+.if-not {
+  font-size: small;
+  padding-top: 1rem;
 }
 
 input {

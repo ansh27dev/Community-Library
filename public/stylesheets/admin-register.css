@@ -36,8 +36,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
-
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
@@ -51,6 +51,11 @@ body {
   text-align: center;
   font-size: xx-large;
   display: block;
+}
+
+.if-not {
+  font-size: small;
+  padding-top: 1rem;
 }
 
 input {

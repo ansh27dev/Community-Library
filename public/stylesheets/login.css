@@ -86,11 +86,16 @@ nav a {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   color: #ffffff;
   font-size: xx-large;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
 }
 
+.if-not {
+  font-size: small;
+  padding-top: 1rem;
+}
 .log {
   height: 2rem;
   width: 15rem;
