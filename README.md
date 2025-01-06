@@ -1,11 +1,13 @@
 # Community Library
 
-A platform/portal that provides allows donating and pooling used books in local community library, so that books need not to be discarded(wasted) and will be borrowed and used in meaningful way, thereby fostering a vibrant and inclusive local community of readers.
+A platform/portal that allows donating and pooling used books in local community library, so that books need not to be discarded(wasted) and will be borrowed and used in meaningful way, thereby fostering a vibrant and inclusive local community of readers.
 
 - Through this initiative, individuals can easily browse the local library, donate their used books, and contribute to the collective pool of resources.
 - An admin dashboard is provided for efficient management of the books, including issuing and returning them as needed.
 - By promoting the values of sharing, collaboration, and community support, the platform strives to remove financial constraints and overcome barriers to learning and knowledge acquisition.
 - Ultimately, it serves as a perfect way to utilize books to their maximum potential, conserve resources, save money, and cultivate a community of knowledge seekers and enthusiasts united in their quest for learning and personal growth.
+
+![screenshot of homepage](/public/images/homepage.png)
 
 ## Tech stack
 
