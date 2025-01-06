@@ -127,6 +127,7 @@ router.get("/:city", authAdmin, async (req, res) => {
       donatedBy: { $in: usersId },
       availability: false,
     });
+    console.log(unAvailableBooks, availableBooks);
 
     res.render("admin", { availableBooks, unAvailableBooks, cityData });
   } catch (error) {

@@ -18,7 +18,7 @@ function gotLocation(position) {
     method: "GET",
   };
 
-  const apiKey = "XYZ";
+  const apiKey = "cdcc09bd7947435a9038e468e8fc6fc5";
 
   fetch(
     `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&apiKey=${apiKey}`,

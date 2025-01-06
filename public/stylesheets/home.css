@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -79,7 +80,7 @@ nav a {
   background: url("../images/photo-1521587760476-6c12a4b040da.avif");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 90vh;
+  height: 100vh;
   width: 100vw;
   padding-top: 2.5rem;
   display: flex;
